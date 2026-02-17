@@ -16,7 +16,7 @@ public class Params {
             @RequestParam String nombre,
             @RequestParam String apellido) {
         String nombreCompleto = nombre + " " + apellido;
-        NombreCompletoDTO respuesta = new NombreCompletoDTO(nombreCompleto);
+        NombreCompletoDTO respuesta = new NombreCompletoDTO(nombreCompleto.toUpperCase());
         return ResponseEntity.ok(respuesta);
     }
 }
