@@ -45,7 +45,18 @@ public class UsuarioController {
 
 
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> obtenerUsuarioPorId(@PathVariable Long id) {
+        try {
+            UsuarioDTO usuario = usuarioService.obtenerUsuarioPorId(id);
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            // Si el usuario no existe, devolvemos 404 Not Found
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 

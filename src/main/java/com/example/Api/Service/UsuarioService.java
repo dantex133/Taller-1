@@ -33,4 +33,12 @@ public class UsuarioService {
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
     }
+
+    public UsuarioDTO obtenerUsuarioPorId(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + id));
+        return new UsuarioDTO(usuario);
+    }
+
+
 }

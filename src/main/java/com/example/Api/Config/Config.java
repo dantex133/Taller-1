@@ -26,6 +26,10 @@ public class Config {
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/params").permitAll()
 
                         .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/usuarios").authenticated()
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/usuarios/{id}").authenticated()
+                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/usuarios").authenticated()
+
+
                         .anyRequest().authenticated()
 
                 )
