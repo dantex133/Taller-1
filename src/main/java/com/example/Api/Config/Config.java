@@ -23,9 +23,11 @@ public class Config {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/usuarios").permitAll()
+                        .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/params").permitAll()
 
                         .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/usuarios").authenticated()
                         .anyRequest().authenticated()
+
                 )
                 .httpBasic(basic -> {})
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()));
