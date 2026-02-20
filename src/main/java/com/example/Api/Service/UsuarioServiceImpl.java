@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class UsuarioServiceImpl implements IUsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -20,14 +20,15 @@ public class UsuarioService {
 
     public UsuarioDTO crearUsuario(Usuario usuario) {
 
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 
+        usuario.setContraseña(passwordEncoder.encode(usuario.getContraseña()));
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);
 
-
         return new UsuarioDTO(usuarioGuardado);
     }
+
+
 
 
     public List<Usuario> obtenerTodosLosUsuarios() {
@@ -41,4 +42,9 @@ public class UsuarioService {
     }
 
 
+    public UsuarioDTO obtenerporNombre(String nombre, String apellido) {
+        Usuario usuario = usuarioRepository.findByNombreAndApellido(nombre, apellido)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado con nombre: " + nombre + " y apellido: " + apellido));
+        return new UsuarioDTO(usuario);
+    }
 }
