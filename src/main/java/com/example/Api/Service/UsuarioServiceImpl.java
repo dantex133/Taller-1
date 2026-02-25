@@ -20,7 +20,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     public UsuarioDTO crearUsuario(Usuario usuario) {
 
-
         usuario.setContraseña(passwordEncoder.encode(usuario.getContraseña()));
 
         Usuario usuarioGuardado = usuarioRepository.save(usuario);

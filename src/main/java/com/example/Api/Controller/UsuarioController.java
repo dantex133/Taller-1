@@ -58,19 +58,19 @@ public class UsuarioController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/buscar")
-    public ResponseEntity<UsuarioDTO> obtenerPorNombre(
+    @GetMapping("/params")
+    public ResponseEntity<UsuarioDTO> buscarPorNombreYApellido(
             @RequestParam String nombre,
             @RequestParam String apellido) {
-        try {
-            UsuarioDTO usuario = usuarioService.obtenerporNombre(nombre, apellido);
-            return new ResponseEntity<>(usuario, HttpStatus.OK);
-        } catch (UsuarioNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        // AQUÍ ES DONDE SE USA TU FUNCIÓN
+        UsuarioDTO usuarioEncontrado = usuarioService.obtenerporNombre(nombre, apellido);
+
+        return ResponseEntity.ok(usuarioEncontrado);
     }
+
+
+
 
 
 }
